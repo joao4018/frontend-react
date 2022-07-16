@@ -14,7 +14,7 @@ function App() {
                         <Profile/>
                     </ProtectedLayout>}>
                     </Route>
-                    <Route path='/login' element={<Login/>}>
+                    <Route path='/' element={<Login/>}>
                     </Route>
                     <Route path='/forgot' element={<Forgot/>}>
                     </Route>
