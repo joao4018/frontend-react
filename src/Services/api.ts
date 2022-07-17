@@ -10,7 +10,6 @@ Api.interceptors.request.use(
         const user = getUserLocalStorage();
         config.headers = {
             "Authorization":  user?.token,
-            "Access-Control-Allow-Origin": "*"
         }
         return config;
     },
