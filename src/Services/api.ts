@@ -2,7 +2,7 @@ import axios from "axios";
 import {getUserLocalStorage} from "../AuthProvider/utils";
 
 export const Api = axios.create({
-    baseURL: 'https://flocal/'
+    baseURL: 'https://fast-lake-01538.herokuapp.com/'
 });
 
 Api.interceptors.request.use(
