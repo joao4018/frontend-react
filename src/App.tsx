@@ -3,7 +3,7 @@ import {AuthProvider} from './AuthProvider';
 import {Forgot} from './Page/Forgot';
 import {Profile} from './Page/Profile';
 import {Login} from "./Page/Login";
-import {BrowserRouter,  Route, Routes} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 
 function App() {
     return (
@@ -14,10 +14,11 @@ function App() {
                         <Profile/>
                     </ProtectedLayout>}>
                     </Route>
-                    <Route path='/' element={<Login/>}>
+                    <Route path='/login' element={<Login/>}>
                     </Route>
                     <Route path='/forgot' element={<Forgot/>}>
                     </Route>
+                    <Route path="/" element={<Navigate to="/login" />} />
                 </Routes>
             </BrowserRouter>
         </AuthProvider>

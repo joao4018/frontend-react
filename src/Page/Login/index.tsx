@@ -29,9 +29,6 @@ export function Login() {
     return (
         <Fragment>
             <Row align='middle' justify='center' style={{ height: '100vh', backgroundColor: '#067bee' }}>
-                <Col flex="1 1 200px">
-                    <Image width='90%' src={Logo} preview={false} />
-                </Col>
                 <Col flex="0 1 500px" style={{ backgroundColor: '#faf7f5', minWidth: '30%', height: '100vh' }}>
                     <Row align='middle' justify='center' style={{ padding: '20px', height: '100%' }}>
                         <LoginComponent
