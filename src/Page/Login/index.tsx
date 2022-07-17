@@ -12,7 +12,8 @@ export function Login() {
     async function onFinish(values: any) {
         try {
             await auth.authenticate(values.email, values.password);
-            history('/profile');
+            // history('/profile');
+            message.success("Login Efetuado com sucesso!");
         } catch (error) {
             message.error("Email e/ou senha inválidos!");
         }
