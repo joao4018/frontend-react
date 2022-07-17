@@ -29,7 +29,7 @@ export function Login() {
     return (
         <Fragment>
             <Row align='middle' justify='center' style={{ height: '100vh', backgroundColor: '#067bee' }}>
-                <Col flex="0 1 500px" style={{ backgroundColor: '#faf7f5', minWidth: '30%', height: '100vh' }}>
+                <Col flex="0 1 500px" style={{ backgroundColor: '#faf7f5', minWidth: '30%', height: '40%' }}>
                     <Row align='middle' justify='center' style={{ padding: '20px', height: '100%' }}>
                         <LoginComponent
                             onFinish={(e) => onFinish(e)}
