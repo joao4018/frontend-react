@@ -33,7 +33,7 @@ export async function CreateRequest(userName: string, email: string, password: s
 
 export async function ForgotRequest(email: string) {
     try {
-        const request = await Api.post("email/api/email-send", { email });
+        const request = await Api.post("email/api/email-send?email=" + email);
         return request.data;
     } catch (error) {
         return null;
