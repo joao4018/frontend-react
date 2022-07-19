@@ -10,9 +10,9 @@ function App() {
         <AuthProvider>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/profile' element={<ProtectedLayout>
+                    <Route path='/profile' element={
                         <Profile/>
-                    </ProtectedLayout>}>
+                    }>
                     </Route>
                     <Route path='/login' element={<Login/>}>
                     </Route>
