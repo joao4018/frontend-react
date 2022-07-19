@@ -21,9 +21,10 @@ export async function LoginRequest(userName: string, password: string) {
     }
 }
 
-export async function CreateRequest(name: string, email: string, password: string) {
+export async function CreateRequest(userName: string, email: string, password: string) {
     try {
-        const request = await Api.post("users", { name, email, password });
+        const role = 'ROLE_USER'
+        const request = await Api.post("auth/signup", { userName, email, password, role });
         return request.data;
     } catch (error) {
         return error;
@@ -32,7 +33,7 @@ export async function CreateRequest(name: string, email: string, password: strin
 
 export async function ForgotRequest(email: string) {
     try {
-        const request = await Api.post("auth/forgot", { email });
+        const request = await Api.post("email/api/email-send", { email });
         return request.data;
     } catch (error) {
         return null;

@@ -21,11 +21,11 @@ export const AuthProvider = ({ children }: iAuthProvider) => {
         setUserLocalStorage(payload);
     }
 
-    async function create(name: string, email: string, password: string) {
-        const response = await CreateRequest(name, email, password);
-        const payload = { token: response.token, email };
-        setUser(payload);
-        setUserLocalStorage(payload);
+    async function create(userName: string, email: string, password: string) {
+        const response = await CreateRequest(userName, email, password);
+        // const payload = { token: response.data.token, email };
+        // setUser(payload);
+        // setUserLocalStorage(payload);
     }
 
     async function forgot(email: string) {
