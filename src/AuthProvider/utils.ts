@@ -12,19 +12,19 @@ export function getUserLocalStorage(){
     return user ?? null;
 }
 
-export async function LoginRequest(userName: string, password: string) {
+export async function LoginRequest(username: string, password: string) {
     try {
-        const request = await Api.post("auth/login", { userName, password });
+        const request = await Api.post("auth/login", { username, password });
         return request.data;
     } catch (error) {
         return null;
     }
 }
 
-export async function CreateRequest(userName: string, email: string, password: string) {
+export async function CreateRequest(username: string, email: string, password: string) {
     try {
         const role = 'ROLE_USER'
-        const request = await Api.post("auth/signup", { userName, email, password, role });
+        const request = await Api.post("auth/signup", { username, email, password, role });
         return request.data;
     } catch (error) {
         return error;
