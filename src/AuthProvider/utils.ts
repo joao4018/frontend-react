@@ -27,7 +27,8 @@ export async function CreateRequest(username: string, email: string, password: s
         const request = await Api.post("auth/signup", { username, email, password, role });
         return request.data;
     } catch (error) {
-        return error;
+        // @ts-ignore
+        return error.response;
     }
 }
 
