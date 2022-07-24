@@ -23,9 +23,15 @@ export const AuthProvider = ({ children }: iAuthProvider) => {
 
     async function create(username: string, email: string, password: string) {
         const response = await CreateRequest(username, email, password);
-        // const payload = { token: response.data.token, email };
-        // setUser(payload);
-        // setUserLocalStorage(payload);
+        let payload = null
+        if (response.status != 201){
+            payload = { detail: response.response.data.details, email};
+            throw  payload;
+        }
+        else{
+            payload = { token: response.data.token, email };
+        }
+        // return payload;
     }
 
     async function forgot(email: string) {

@@ -10,11 +10,12 @@ export const Profile = () => {
     const history = useNavigate();
 
     async function onFinish(values: { name: string, email: string, password: string }) {
+        let autho;
         try {
-            await auth.create(values.name, values.email, values.password);
-            history('/login');
+            autho = await auth.create(values.name, values.email, values.password);
         } catch (error) {
-            message.error(`Erro: ${error}`);
+            // @ts-ignore
+            message.error(`Erro: ${error.detail}`);
         }
     }
 
