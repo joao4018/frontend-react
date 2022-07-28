@@ -68,6 +68,16 @@ export async function CodeValidateRequest(code: string) {
     }
 }
 
+export async function EmailValidateRequest(email: string | null) {
+    try {
+        const request = await Api.get("auth/validateUserAccount?email="+email, );
+        return request.data;
+    } catch (error) {
+        // @ts-ignore
+        return error.response;
+    }
+}
+
 export async function ForgotRequest(email: string) {
     try {
         const request = await Api.post("email/api/email-send?email=" + email);

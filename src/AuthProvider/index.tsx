@@ -6,7 +6,7 @@ import {
     setUserLocalStorage,
     ForgotRequest,
     CreateRequest,
-    CodeValidateRequest, getCodeLocalStorage, setCodeLocalStorage, RecoveryPasswordRequest
+    CodeValidateRequest, getCodeLocalStorage, setCodeLocalStorage, RecoveryPasswordRequest, EmailValidateRequest
 } from "./utils";
 
 export const AuthContext = createContext<iContext>({} as iContext)
@@ -59,13 +59,17 @@ export const AuthProvider = ({ children }: iAuthProvider) => {
         setCodeLocalStorage(code);
     }
 
+    async function emailValidate(email: string | null) {
+        const response = await EmailValidateRequest(email);
+    }
+
     function logout() {
         setUser(null);
         setUserLocalStorage(null);
     }
 
     return (
-        <AuthContext.Provider value={{ ...user, authenticate, logout, forgot, create, codeValidate, recovery }}>
+        <AuthContext.Provider value={{ ...user, authenticate, logout, forgot, create, codeValidate, recovery, emailValidate }}>
             {children}
         </AuthContext.Provider>
     )

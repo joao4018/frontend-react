@@ -6,6 +6,7 @@ import {Login} from "./Page/Login";
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import {ValidateCode} from "./Page/Code";
 import {RecoveryPassword} from "./Page/RecoveryPassword";
+import {ValidateEmail} from "./Page/ValidateAccount";
 
 function App() {
     return (
@@ -24,7 +25,9 @@ function App() {
                     </Route>
                     <Route path='/recovery' element={<RecoveryPassword/>}>
                     </Route>
-                    <Route path="/" element={<Navigate to="/login" />} />
+                    <Route path='/email-validate/*' element={<ValidateEmail/>} >
+                    </Route>
+                    <Route path="/" element={<Navigate to="/login" />}  />
                 </Routes>
             </BrowserRouter>
         </AuthProvider>
