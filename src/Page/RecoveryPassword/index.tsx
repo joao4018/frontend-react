@@ -13,7 +13,8 @@ export const RecoveryPassword = () => {
         let autho;
         try {
             autho = await auth.recovery(values.email, values.password);
-            message.success("Cadastro Efetuado com sucesso!");
+            message.success("Alteração Efetuada com sucesso!");
+            history('/login');
         } catch (error) {
             // @ts-ignore
             message.error(`Erro: ${error.detail}`);

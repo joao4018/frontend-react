@@ -11,7 +11,7 @@ export const Forgot = () => {
     async function onFinish(values: { email: string }) {
         try {
             await auth.forgot(values.email);
-            history('/auth/forgot');
+            history('/validate-code');
         } catch (error) {
             message.error("Email não encontrado em nossa base de dados");
         }

@@ -11,7 +11,7 @@ export const ValidateCode = () => {
     async function onFinish(values: { code: string }) {
         try {
             await auth.codeValidate(values.code);
-            // history('/login');
+            history('/recovery');
         } catch (error) {
             message.error("Código errado");
         }

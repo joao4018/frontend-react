@@ -50,6 +50,7 @@ export async function CreateRequest(username: string, email: string, password: s
 export async function RecoveryPasswordRequest(code: string, email: string, password: string) {
     try {
         const request = await Api.post("auth/recoveryPassword", { code, email, password });
+        cleanCodeLocalStorage()
         return request.data;
     } catch (error) {
         // @ts-ignore
