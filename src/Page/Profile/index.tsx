@@ -13,7 +13,7 @@ export const Profile = () => {
         let autho;
         try {
             autho = await auth.create(values.name, values.email, values.password);
-            message.success("Cadastro Efetuado com sucesso!");
+            message.success("Cadastro Efetuado com sucesso!, Válide sua conta no email e evite que ela expire");
         } catch (error) {
             // @ts-ignore
             message.error(`Erro: ${error.detail}`);
