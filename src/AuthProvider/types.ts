@@ -16,6 +16,7 @@ export interface iContext extends iUser {
     codeValidate: (name: string) => Promise<void>;
     recovery: (email: string, password: string) => Promise<void>;
     emailValidate: (email: string | null) => Promise<void>;
+    emailValidateSend: (email: string) => Promise<void>;
 }
 
 export interface iAuthProvider {
