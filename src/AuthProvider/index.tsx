@@ -1,6 +1,13 @@
 import { createContext, useEffect, useState } from "react";
 import { iAuthProvider, iContext, iUser } from "./types";
-import { getUserLocalStorage, LoginRequest, setUserLocalStorage, ForgotRequest, CreateRequest } from "./utils";
+import {
+    getUserLocalStorage,
+    LoginRequest,
+    setUserLocalStorage,
+    ForgotRequest,
+    CreateRequest,
+    CodeValidateRequest
+} from "./utils";
 
 export const AuthContext = createContext<iContext>({} as iContext)
 
@@ -38,13 +45,17 @@ export const AuthProvider = ({ children }: iAuthProvider) => {
         setUserLocalStorage(payload);
     }
 
+    async function codeValidate(email: string) {
+        const response = await CodeValidateRequest(email);
+    }
+
     function logout() {
         setUser(null);
         setUserLocalStorage(null);
     }
 
     return (
-        <AuthContext.Provider value={{ ...user, authenticate, logout, forgot, create }}>
+        <AuthContext.Provider value={{ ...user, authenticate, logout, forgot, create, codeValidate }}>
             {children}
         </AuthContext.Provider>
     )

@@ -32,6 +32,16 @@ export async function CreateRequest(username: string, email: string, password: s
     }
 }
 
+export async function CodeValidateRequest(code: string) {
+    try {
+        const request = await Api.post("auth/validateAccessCode", { code });
+        return request.data;
+    } catch (error) {
+        // @ts-ignore
+        return error.response;
+    }
+}
+
 export async function ForgotRequest(email: string) {
     try {
         const request = await Api.post("email/api/email-send?email=" + email);

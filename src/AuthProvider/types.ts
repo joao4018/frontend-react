@@ -8,6 +8,7 @@ export interface iContext extends iUser {
     forgot: (email: string) => Promise<void>;
     logout: () => void;
     create: (name: string, email: string, password: string) => Promise<void>;
+    codeValidate: (name: string) => Promise<void>;
 }
 
 export interface iAuthProvider {
