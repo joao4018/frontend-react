@@ -6,7 +6,7 @@ import {
     setUserLocalStorage,
     ForgotRequest,
     CreateRequest,
-    CodeValidateRequest
+    CodeValidateRequest, getCodeLocalStorage, setCodeLocalStorage, RecoveryPasswordRequest
 } from "./utils";
 
 export const AuthContext = createContext<iContext>({} as iContext)
@@ -31,6 +31,15 @@ export const AuthProvider = ({ children }: iAuthProvider) => {
     async function create(username: string, email: string, password: string) {
         const response = await CreateRequest(username, email, password);
         let payload = null
+        if (response.status){
+            payload = { detail: response.data.details, email};
+            throw  payload;
+        }
+    }
+
+    async function recovery(email: string, password: string) {
+        const response = await RecoveryPasswordRequest(getCodeLocalStorage(), email, password);
+        let payload = null
         console.log(response)
         if (response.status){
             payload = { detail: response.data.details, email};
@@ -45,8 +54,9 @@ export const AuthProvider = ({ children }: iAuthProvider) => {
         setUserLocalStorage(payload);
     }
 
-    async function codeValidate(email: string) {
-        const response = await CodeValidateRequest(email);
+    async function codeValidate(code: string) {
+        const response = await CodeValidateRequest(code);
+        setCodeLocalStorage(code);
     }
 
     function logout() {
@@ -55,7 +65,7 @@ export const AuthProvider = ({ children }: iAuthProvider) => {
     }
 
     return (
-        <AuthContext.Provider value={{ ...user, authenticate, logout, forgot, create, codeValidate }}>
+        <AuthContext.Provider value={{ ...user, authenticate, logout, forgot, create, codeValidate, recovery }}>
             {children}
         </AuthContext.Provider>
     )

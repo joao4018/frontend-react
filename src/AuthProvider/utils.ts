@@ -1,12 +1,27 @@
-import { iUser } from "./types";
+import {iCode, iUser} from "./types";
 import {Api} from "../Services/api";
 
 export function setUserLocalStorage(user: iUser | null){
     localStorage.setItem("US", JSON.stringify(user));
 }
 
+export function setCodeLocalStorage(code: iCode | null | String ){
+    localStorage.setItem("COD", JSON.stringify(code));
+}
+
+export function cleanCodeLocalStorage(){
+    localStorage.removeItem("COD");
+}
+
 export function getUserLocalStorage(){
     const json = localStorage.getItem("US");
+    if(!json) return null;
+    const user = JSON.parse(json)
+    return user ?? null;
+}
+
+export function getCodeLocalStorage(){
+    const json = localStorage.getItem("COD");
     if(!json) return null;
     const user = JSON.parse(json)
     return user ?? null;
@@ -25,6 +40,16 @@ export async function CreateRequest(username: string, email: string, password: s
     try {
         const role = 'ROLE_USER'
         const request = await Api.post("auth/signup", { username, email, password, role });
+        return request.data;
+    } catch (error) {
+        // @ts-ignore
+        return error.response;
+    }
+}
+
+export async function RecoveryPasswordRequest(code: string, email: string, password: string) {
+    try {
+        const request = await Api.post("auth/recoveryPassword", { code, email, password });
         return request.data;
     } catch (error) {
         // @ts-ignore
