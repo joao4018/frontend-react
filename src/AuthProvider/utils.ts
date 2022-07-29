@@ -70,7 +70,7 @@ export async function CodeValidateRequest(code: string) {
 
 export async function EmailValidateRequest(email: string | null) {
     try {
-        const request = await Api.get("email/validateUserAccount?email="+email, );
+        const request = await Api.get("auth/validateUserAccount?email="+email, );
         return request.data;
     } catch (error) {
         // @ts-ignore
@@ -80,7 +80,7 @@ export async function EmailValidateRequest(email: string | null) {
 
 export async function EmailValidateSendRequest(email: string) {
     try {
-        const request = await Api.post("auth/api/email-validate-send", { email } );
+        const request = await Api.post("email/api/email-validate-send", { email } );
         return request.data;
     } catch (error) {
         // @ts-ignore
