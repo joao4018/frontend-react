@@ -4,6 +4,8 @@ import {Forgot} from './Page/Forgot';
 import {Profile} from './Page/Profile';
 import {Login} from "./Page/Login";
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
+import {Home} from "./Page/Home";
+
 import {ValidateCode} from "./Page/Code";
 import {RecoveryPassword} from "./Page/RecoveryPassword";
 import {ValidateEmail} from "./Page/ValidateAccount";
@@ -27,7 +29,7 @@ function App() {
                     </Route>
                     <Route path='/email-validate/*' element={<ValidateEmail/>} >
                     </Route>
-                    <Route path="/" element={<Navigate to="/login" />}  />
+                    <Route path="/home" element={<Home/>}/>
                 </Routes>
             </BrowserRouter>
         </AuthProvider>
