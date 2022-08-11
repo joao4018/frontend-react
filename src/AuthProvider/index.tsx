@@ -1,6 +1,18 @@
 import { createContext, useEffect, useState } from "react";
 import { iAuthProvider, iContext, iUser } from "./types";
-import { getUserLocalStorage, LoginRequest, setUserLocalStorage, ForgotRequest, CreateRequest } from "./utils";
+import {
+    getUserLocalStorage,
+    LoginRequest,
+    setUserLocalStorage,
+    ForgotRequest,
+    CreateRequest,
+    CodeValidateRequest,
+    getCodeLocalStorage,
+    setCodeLocalStorage,
+    RecoveryPasswordRequest,
+    EmailValidateRequest,
+    EmailValidateSendRequest
+} from "./utils";
 
 export const AuthContext = createContext<iContext>({} as iContext)
 
@@ -24,14 +36,20 @@ export const AuthProvider = ({ children }: iAuthProvider) => {
     async function create(username: string, email: string, password: string) {
         const response = await CreateRequest(username, email, password);
         let payload = null
-        if (response.status != 201){
-            payload = { detail: response.response.data.details, email};
+        if (response.status){
+            payload = { detail: response.data.details, email};
             throw  payload;
         }
-        else{
-            payload = { token: response.data.token, email };
+    }
+
+    async function recovery(email: string, password: string) {
+        const response = await RecoveryPasswordRequest(getCodeLocalStorage(), email, password);
+        let payload = null
+        console.log(response)
+        if (response.status){
+            payload = { detail: response.data.details, email};
+            throw  payload;
         }
-        // return payload;
     }
 
     async function forgot(email: string) {
@@ -41,13 +59,26 @@ export const AuthProvider = ({ children }: iAuthProvider) => {
         setUserLocalStorage(payload);
     }
 
+    async function codeValidate(code: string) {
+        const response = await CodeValidateRequest(code);
+        setCodeLocalStorage(code);
+    }
+
+    async function emailValidate(email: string | null) {
+        const response = await EmailValidateRequest(email);
+    }
+
+    async function emailValidateSend(email: string) {
+        const response = await EmailValidateSendRequest(email);
+    }
+
     function logout() {
         setUser(null);
         setUserLocalStorage(null);
     }
 
     return (
-        <AuthContext.Provider value={{ ...user, authenticate, logout, forgot, create }}>
+        <AuthContext.Provider value={{ ...user, authenticate, logout, forgot, create, codeValidate, recovery, emailValidate, emailValidateSend }}>
             {children}
         </AuthContext.Provider>
     )

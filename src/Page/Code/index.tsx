@@ -1,19 +1,19 @@
 import { Button, Col, Form, Input, Row, message } from "antd";
-import { MailOutlined } from '@ant-design/icons';
+import {EditOutlined, MailOutlined} from '@ant-design/icons';
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import {useAuth} from "../../AuthProvider/useAuth";
 
-export const Forgot = () => {
+export const ValidateCode = () => {
     const auth = useAuth();
     const history = useNavigate();
 
-    async function onFinish(values: { email: string }) {
+    async function onFinish(values: { code: string }) {
         try {
-            await auth.forgot(values.email);
-            history('/validate-code');
+            await auth.codeValidate(values.code);
+            history('/recovery');
         } catch (error) {
-            message.error("Email não encontrado em nossa base de dados");
+            message.error("Código errado");
         }
     }
 
@@ -23,13 +23,13 @@ export const Forgot = () => {
                 <Col flex="0 1 500px" style={{ backgroundColor: '#faf7f5', minWidth: '30%' }}>
                     <Row align='middle' justify='center' style={{ padding: '20px', height: '100%' }}>
                         <Form name="normal_forgot" initialValues={{ remember: true }} onFinish={onFinish} style={{ width: '100%', }}>
-                            <h2>Uma nova senha será enviada para seu email</h2>
-                            <Form.Item name="email" rules={[{ required: true, message: 'Entre com seu email.' }]}>
-                                <Input prefix={<MailOutlined className="site-form-item-icon" />} placeholder="Email..." />
+                            <h2>Insira o código que recebeu no email</h2>
+                            <Form.Item name="code" rules={[{ required: true, message: 'Entre com seu codigo.' }]}>
+                                <Input prefix={<EditOutlined  className="site-form-item-icon" />} placeholder="Código..." />
                             </Form.Item>
                             <Form.Item>
                                 <Row>
-                                    <Button type="primary" htmlType="submit" style={{ width: '100%' }}>Enviar</Button>
+                                    <Button type="primary" htmlType="submit" style={{ width: '100%' }}>Validar</Button>
                                 </Row>
                             </Form.Item>
                         </Form>

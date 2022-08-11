@@ -6,6 +6,9 @@ import {Login} from "./Page/Login";
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import {Home} from "./Page/Home";
 
+import {ValidateCode} from "./Page/Code";
+import {RecoveryPassword} from "./Page/RecoveryPassword";
+import {ValidateEmail} from "./Page/ValidateAccount";
 
 function App() {
     return (
@@ -18,7 +21,13 @@ function App() {
                     </Route>
                     <Route path='/login' element={<Login/>}>
                     </Route>
+                    <Route path='/validate-code' element={<ValidateCode/>}>
+                    </Route>
                     <Route path='/forgot' element={<Forgot/>}>
+                    </Route>
+                    <Route path='/recovery' element={<RecoveryPassword/>}>
+                    </Route>
+                    <Route path='/email-validate/*' element={<ValidateEmail/>} >
                     </Route>
                     <Route path="/home" element={<Home/>}/>
                 </Routes>
