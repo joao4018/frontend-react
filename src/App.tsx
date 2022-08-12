@@ -5,6 +5,7 @@ import {Profile} from './Page/Profile';
 import {Login} from "./Page/Login";
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import {Home} from "./Page/Home";
+import {Store} from "./Page/Store";
 
 import {ValidateCode} from "./Page/Code";
 import {RecoveryPassword} from "./Page/RecoveryPassword";
@@ -30,6 +31,8 @@ function App() {
                     <Route path='/email-validate/*' element={<ValidateEmail/>} >
                     </Route>
                     <Route path="/home" element={<Home/>}/>
+                    <Route path="/store" element={<Store/>}/>
+
                 </Routes>
             </BrowserRouter>
         </AuthProvider>
