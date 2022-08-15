@@ -33,15 +33,27 @@
     .items{
       display: flex;
       align-items: center;
-
+      
+      
       .item{
          display: flex;
         align-items: center;
         margin-right: 20px;
-
+        
+        .pop{
+          .popover {
+            background: #555;
+            width: 100px;
+            height: 100px;    
+          }
+        }
+        
+        
+        
         .icon{
           font-size: 20px;
         }
+
 
         .avatar{
           width: 35px;
@@ -51,6 +63,8 @@
           padding: 3px;
           cursor: pointer;
         }
+
+        
       }
     }
   }
