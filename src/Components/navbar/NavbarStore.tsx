@@ -1,4 +1,4 @@
-import "./navbar.scss"
+import "./navbarStore.scss"
 import SearchIcon from '@mui/icons-material/Search';
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
@@ -57,10 +57,10 @@ const Navbar = () => {
                         <div className="counter">2</div>
                     </div>
                     <div className="item">
-                    <div className="pop">
-                        <button aria-describedby={id} onClick={handleClick} >
-                        <StoreIcon className="Store" />
+                        <button aria-describedby={id} onClick={handleClick} className="icon-button" >
+                        <StoreIcon />
                         </button>
+                  
 
                         <Popover 
                          id={id}
@@ -71,30 +71,19 @@ const Navbar = () => {
                             vertical: 'bottom' , 
                             horizontal: 'center',
                         }}>
-                        
-                        <div className="popover">
-                        <button >
+                            
+                        <button className="popover">
                         New Store
-                        </button>
-                        </div>
-                        
-                        <div className="popover">
-                        <button >
+                        </button>    
+                        <button className="popover">
                         List Stores
                         </button>
-                        </div>
-                        
-                        <div className="popover">
-                        <button >
+                        <button className="popover">
                         Edit Store
                         </button>
-                        </div>
-                        
                         </Popover>
                     </div>
-                    </div>
                     <div className="item">
-
                         <PermIdentityIcon className="avatar" />
                     </div>
                 </div>
