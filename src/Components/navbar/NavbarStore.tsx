@@ -57,9 +57,9 @@ const Navbar = () => {
                         <div className="counter">2</div>
                     </div>
                     <div className="item">
-                        <button aria-describedby={id} onClick={handleClick} className="icon-button" >
-                        <StoreIcon />
-                        </button>
+                        <Button aria-describedby={id} variant="contained" onClick={handleClick} className="icon-button" >
+                        <StoreIcon className="icon-store"/>
+                        </Button>
                   
 
                         <Popover 
@@ -71,16 +71,24 @@ const Navbar = () => {
                             vertical: 'bottom' , 
                             horizontal: 'center',
                         }}>
-                            
-                        <button className="popover">
+                        <div className="over">
+                        <Button className="button-over">
                         New Store
-                        </button>    
-                        <button className="popover">
+                        </Button>    
+                        </div>
+                 
+                        <div className="over">
+                        <Button >
                         List Stores
-                        </button>
-                        <button className="popover">
+                        </Button>    
+                        </div>
+
+                        <div className="over">
+                        <Button >
                         Edit Store
-                        </button>
+                        </Button>    
+                        </div>
+                      
                         </Popover>
                     </div>
                     <div className="item">

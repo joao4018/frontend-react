@@ -35,27 +35,24 @@
       display: flex;
       align-items: center;
       
-      .item-button{
-        display: flex;
-        align-items: center;
-        margin-right: 20px;
-        background: #9b2626;
-      
-      }
+    
       
       .item{
 
-    
+        
 
         display: flex;
         align-items: center;
         margin-right: 20px;
         
-   
-        .icon-button{
-          border-radius: 50%;
+        .over{         
+          .button-over{
+            background: #1f993a;
+
+          }
+
         }
-        
+
         
         .icon{
           font-size: 20px;
